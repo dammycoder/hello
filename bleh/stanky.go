@@ -1,30 +1,30 @@
-package main
+package main 
 
 import "fmt"
 
-/* Declare global variables */
-var a int = 20;
+type name struct {names[] string}
 
-func main() {
-   /* main() local variables */
-   var a int = 10
-   var b int = 20
-   var c int = 0
-
-   fmt.Printf("main() a = %d\n",  a);
-   c = sum(a,b);
-   fmt.Printf("main() c = %d\n",  c);
+func main(){
+   var Name string
+   var na name
+   fmt.Println("Enter a name")
+   fmt.Scanln(&Name)
+   na.names = append(na.names, Name)
+   temp:= whatif(Name)
+   for temp== false{
+      fmt.Println("Enter your name")
+      fmt.Scanln(&Name)  
+      na.names = append(na.names, Name)
+   }
+   for temp== true{
+      fmt.Println(na.names)
+   }
 }
 
-/* Function definition - two numbers added */
-func sum(a, b int) int {
-   fmt.Printf("sum() in the function a = %d\n",  a);
-   fmt.Printf("sum() in the function b = %d\n",  b);
-   return a + b;
+func whatif (n string ) bool {
+   neh:= false 
+   if n== "quit"{
+      neh= true
+   }
+   return neh
 }
-The output of the above code execution is:
-
-main() a = 10
-sum() in the function a = 10
-sum() in the function b = 20
-main() c = 30

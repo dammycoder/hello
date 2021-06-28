@@ -1,42 +1,54 @@
-package main 
+package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
-var name string
-var amount int 
-var quit string
-
-
-func init(){
-	fmt.Println("enter a name")
-	fmt.Scanln(&name)
-	fmt.Println("Enter the Amount:")
-	fmt.Scanln(&amount)
+type Trader struct {
+	Name   string
+	Amount float64
 }
 
-func main(){
-	fmt.Println("Enter quit to quit and anything else to continue:") 
-	fmt.Scanln(&quit)
-	trader:= make (map[int]string)
-	trade:= make (map[int] int)
-	trader[0]= name
-	trade[0]= amount 
-	for i:=0; quit!="quit"; i++{
-		fmt.Println("Enter a name")
+// how do i use a nested for loop to check if both name and amounr are true?
+func main() {
+	var name string
+	var amount string
+	var Anything []Trader
+	
+
+	for  {
+		fmt.Println("Enter a name:\n")
 		fmt.Scanln(&name)
-		fmt.Println("Enter the amount:")
-		fmt.Scanln(&amount)
-		fmt.Println("Ready to quit now?")
-		fmt.Scanln(&quit)
-		trader [i]=name
-	    trade [i]= amount
+		if name=="quit"{
+			break 
+		}
+
+		fmt.Println("Enter an amount\n")
+		fmt.Scanln(&amount) 
+		if amount == "quit"{
+			break
+		}
+		
+		f, err := strconv.ParseFloat(amount, 64)
+
+		if err!=nil{
+			fmt.Println("you entered an incorrect number")
+			break
+		} 
+
+		Anything = append(Anything, Trader{
+			Name: name,
+			Amount:f,
+			
+		})
+	
 	}
-	if quit == "quit"{
-		for _,k:= range trader{
-			fmt.Println(k)
-		}
-		for _,b:= range trade{
-			fmt.Println(b)
-		}
-	} 
+
+	for i, v := range Anything{
+		fmt.Printf("%d) %s %g\n", i+1,v.Name,v.Amount)
+		
+	}
+	
 }
+
